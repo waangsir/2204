@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/pubuliu.css">
+    <script src="./jq/jquery-1.11.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1>瀑布流images</h1>
+    <ul class="box">
+        <li>
+            <img src="./images/1.webp" alt="">
+            <p>风景图</p>
+        </li>
+        <li>
+            <img src="./images/2.webp" alt="">
+            <p>风景图</p>
+        </li>
+        <li>
+            <img src="./images/3.webp" alt="">
+            <p>风景图</p>
+        </li>
+        <li>
+            <img src="./images/4.webp" alt="">
+            <p>风景图</p>
+        </li>
+        <li>
+            <img src="./images/5.webp" alt="">
+            <p>风景图</p>
+        </li>
+        <li>
+            <img src="./images/6.webp" alt="">
+            <p>风景图</p>
+        </li>
+        <li>
+            <img src="./images/7.webp" alt="">
+            <p>风景图</p>
+        </li>
+        <li>
+            <img src="./images/8.webp" alt="">
+            <p>风景图</p>
+        </li>
+        <li>
+            <img src="./images/9.webp" alt="">
+            <p>风景图</p>
+        </li>
+        <li>
+            <img src="./images/10.webp" alt="">
+            <p>风景图</p>
+        </li>
+        <li>
+            <img src="./images/11.webp" alt="">
+            <p>风景图</p>
+        </li>
+        <li>
+            <img src="./images/12.webp" alt="">
+            <p>风景图</p>
+        </li>
+        <li>
+            <img src="./images/13.webp" alt="">
+            <p>风景图</p>
+        </li>
+        <li>
+            <img src="./images/14.webp" alt="">
+            <p>风景图</p>
+        </li>
+        <li>
+            <img src="./images/15.webp" alt="">
+            <p>风景图</p>
+        </li>
+        <li>
+            <img src="./images/16.webp" alt="">
+            <p>风景图</p>
+        </li>
+        <li>
+            <img src="./images/17.webp" alt="">
+            <p>风景图</p>
+        </li>
+        <li>
+            <img src="./images/18.webp" alt="">
+            <p>风景图</p>
+        </li>
+    </ul>
+    <script>
+        window.onresize =function(){
+            auto();
+        }
+
+
+
+
+
+
+        auto();
+      function auto(){
+        var margins = 10;
+        var htmlwidth = window.innerWidth;
+        var liwidth =  $('.box>li')[0].offsetWidth;
+        var num = parseInt(htmlwidth/liwidth);
+        // console.log(num);
+        var arr = [];
+        for(let i = 0; i<$('.box>li').length;i++){
+            if(i<num){
+                $('.box>li').eq(i).css({top:0,left:(liwidth+margins)*i});
+                arr[i]=$('.box>li')[i].offsetHeight;
+                // console.log(arr);
+            }else{
+                var minheight = Math.min.apply(Math,arr);
+                // console.log(minheight);
+                var index = arr.indexOf(minheight);
+                // console.log(index);
+                $('.box>li').eq(i).css({top:minheight+margins,left:(liwidth+margins)*index});
+                arr[index] +=$('.box>li')[i].offsetHeight+margins;
+            }
+        }
+        $('.box').width((liwidth+margins)*num-margins).height(Math.max.apply(Math,arr));
+        
+      }
+    </script>
+</body>
+</html>
